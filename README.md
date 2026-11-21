@@ -11,11 +11,6 @@
   
 ---
 
-# Strategic Compensation & Pay Equity Analytics
-
-An End-to-End HR Analytics, Compensation Intelligence, and Pay Equity Analysis Project using **Python, MySQL, SQL, and Microsoft Power BI**.
-
----
 
 ## 1. Project Overview
 
