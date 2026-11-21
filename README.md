@@ -445,40 +445,7 @@ Interactive Dashboard Development
 Business Insights & Recommendations
 ```
 
-## 11. Project Structure
-
-```text
-Strategic Compensation & Pay Equity Analytics/
-│
-├── data/
-│   ├── compensation.csv
-│   ├── data_dictionary.csv
-│   ├── employees.csv
-│   ├── jobs.csv
-│   ├── performance.csv
-│   ├── promotions.csv
-│   └── salary_bands.csv
-│
-├── notebooks/
-│   ├── 01_Data_Understanding.ipynb
-│   ├── 02_Data_Quality_Audit.ipynb
-│   ├── 03_Data_Cleaning.ipynb
-│   ├── 04_Exploratory_Data_Analysis.ipynb
-│   └── 05_Pay_Equity_Analysis.ipynb
-│
-├── sql/
-│   └── SQL analysis scripts (12 files)
-│
-├── powerbi/
-│   └── Compensation_Pay_Equity_Analysis.pbix
-│
-├── reports/
-│   └── Strategic Compensation & Pay Equity Analytics.pdf
-│
-└── README.md
-```
-
-## 12. Skills Demonstrated
+## 11. Skills Demonstrated
 
 **Python**
 - Data cleaning and preprocessing
@@ -517,7 +484,7 @@ Strategic Compensation & Pay Equity Analytics/
 - Performance and promotion analysis
 - Business insight development
 
-## 13. Important Analytical Considerations
+## 12. Important Analytical Considerations
 
 - A gender pay gap is an observed difference in compensation and does not independently establish discrimination.
 - Comparisons should consider relevant factors such as job level, department, location, experience, and performance.
@@ -525,7 +492,7 @@ Strategic Compensation & Pay Equity Analytics/
 - Salary band compliance is a monitoring indicator, not proof that every employee's compensation is equitable.
 - Dashboard metrics should be reconciled with the underlying SQL and Python calculations, particularly where filters, reporting periods, and aggregation levels differ.
 
-## 14. Conclusion
+## 13. Conclusion
 
 Strategic Compensation & Pay Equity Analytics demonstrates an end-to-end analytical workflow combining Python, MySQL, SQL, and Power BI.
 
