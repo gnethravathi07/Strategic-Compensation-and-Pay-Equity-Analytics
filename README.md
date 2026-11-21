@@ -1,4 +1,4 @@
-# 💜 Strategic Compensation and Pay Equity Analytics
+#  Strategic Compensation and Pay Equity Analytics
 
 <p align="center">
   <img src="https://img.shields.io/badge/HR%20Analytics-Compensation-8E44AD?style=for-the-badge" />
