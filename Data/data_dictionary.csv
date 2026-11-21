@@ -1,0 +1,13 @@
+File,Column,Description
+employees.csv,Employee_ID,Unique employee identifier
+employees.csv,Gender,Gender category used for equity analysis
+employees.csv,Job_ID,Foreign key to jobs.csv
+jobs.csv,Job_Level,Organizational level 1-6
+compensation.csv,Base_Salary,Annual base salary (INR)
+compensation.csv,Annual_Bonus,Annual variable bonus (INR)
+compensation.csv,Total_Compensation,Base + bonus + allowances
+salary_bands.csv,Band_Min,Approved salary-band minimum
+salary_bands.csv,Band_Mid,Approved salary-band midpoint
+salary_bands.csv,Band_Max,Approved salary-band maximum
+performance.csv,Performance_Rating,Annual performance rating 1-5
+promotions.csv,Salary_Increase_Pct,Promotion-related salary increase percentage

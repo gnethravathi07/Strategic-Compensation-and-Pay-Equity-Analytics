@@ -1,0 +1,51 @@
+Job_ID,Job_Title,Department,Job_Family,Job_Level,Min_Experience,Max_Experience
+J001,HR Coordinator,Human Resources,HR Operations,1,0,3
+J002,HR Analyst,Human Resources,People Analytics,2,2,5
+J003,Senior HR Analyst,Human Resources,People Analytics,3,4,8
+J004,HR Manager,Human Resources,HR Management,4,7,12
+J005,Talent Acquisition Specialist,Human Resources,Talent Acquisition,2,2,6
+J006,Financial Analyst,Finance,Financial Planning,2,1,5
+J007,Senior Financial Analyst,Finance,Financial Planning,3,4,8
+J008,Finance Manager,Finance,Financial Planning,4,7,12
+J009,Accountant,Finance,Accounting,2,1,6
+J010,Senior Accountant,Finance,Accounting,3,4,9
+J011,Data Analyst,Analytics,Data Analytics,2,1,5
+J012,Senior Data Analyst,Analytics,Data Analytics,3,4,8
+J013,BI Analyst,Analytics,Business Intelligence,2,2,6
+J014,Senior BI Analyst,Analytics,Business Intelligence,3,5,9
+J015,Analytics Manager,Analytics,Analytics Management,4,8,13
+J016,Software Engineer,Technology,Software Engineering,2,1,5
+J017,Senior Software Engineer,Technology,Software Engineering,3,4,9
+J018,Lead Software Engineer,Technology,Software Engineering,4,7,12
+J019,Engineering Manager,Technology,Engineering Management,5,10,16
+J020,QA Engineer,Technology,Quality Engineering,2,1,5
+J021,Senior QA Engineer,Technology,Quality Engineering,3,4,9
+J022,Sales Executive,Sales,Sales,1,0,4
+J023,Account Executive,Sales,Sales,2,2,6
+J024,Senior Account Executive,Sales,Sales,3,5,10
+J025,Sales Manager,Sales,Sales Management,4,8,14
+J026,Marketing Executive,Marketing,Marketing,1,0,4
+J027,Marketing Analyst,Marketing,Marketing Analytics,2,2,6
+J028,Senior Marketing Analyst,Marketing,Marketing Analytics,3,5,9
+J029,Marketing Manager,Marketing,Marketing Management,4,8,14
+J030,Operations Associate,Operations,Operations,1,0,3
+J031,Operations Analyst,Operations,Operations,2,2,6
+J032,Senior Operations Analyst,Operations,Operations,3,5,9
+J033,Operations Manager,Operations,Operations Management,4,8,14
+J034,Supply Chain Analyst,Supply Chain,Supply Chain,2,1,5
+J035,Senior Supply Chain Analyst,Supply Chain,Supply Chain,3,4,9
+J036,Procurement Specialist,Supply Chain,Procurement,2,2,7
+J037,Supply Chain Manager,Supply Chain,Supply Chain Management,4,8,14
+J038,Customer Support Associate,Customer Success,Customer Support,1,0,3
+J039,Customer Success Specialist,Customer Success,Customer Success,2,2,6
+J040,Senior Customer Success Specialist,Customer Success,Customer Success,3,5,9
+J041,Customer Success Manager,Customer Success,Customer Success Management,4,8,14
+J042,Legal Associate,Legal & Compliance,Legal,2,1,5
+J043,Compliance Analyst,Legal & Compliance,Compliance,2,2,6
+J044,Senior Compliance Analyst,Legal & Compliance,Compliance,3,5,10
+J045,Compliance Manager,Legal & Compliance,Compliance Management,4,8,14
+J046,Product Analyst,Product,Product,2,2,6
+J047,Senior Product Analyst,Product,Product,3,5,9
+J048,Product Manager,Product,Product Management,4,7,12
+J049,Senior Product Manager,Product,Product Management,5,10,16
+J050,Director - Business Function,Leadership,Leadership,6,14,25
