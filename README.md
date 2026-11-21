@@ -8,440 +8,542 @@
 </p>
 
 <p align="center">
-  **Transforming Employee Compensation Data into Strategic HR Insights**
-</p>
+  
+---
+
+# Strategic Compensation & Pay Equity Analytics
+
+An End-to-End HR Analytics, Compensation Intelligence, and Pay Equity Analysis Project using **Python, MySQL, SQL, and Microsoft Power BI**.
 
 ---
 
-## 📌 1. Project Overview
+## 1. Project Overview
 
-**Strategic Compensation and Pay Equity Analytics** is an end-to-end HR analytics project focused on understanding workforce composition, employee compensation, gender pay differences, salary band compliance, employee performance, and career progression.
+Strategic Compensation & Pay Equity Analytics is an end-to-end data analytics project designed to examine employee compensation structures, workforce demographics, salary distribution, gender pay differences, performance ratings, promotion patterns, and salary band compliance.
 
-The project analyzes employee and compensation data to identify salary distribution patterns, evaluate compensation consistency, examine promotion trends, and highlight potential areas of compensation risk.
+The project transforms raw HR datasets into meaningful business insights through data cleaning, exploratory data analysis, statistical analysis, SQL-based business intelligence, and interactive Power BI dashboards.
 
-Using Python-based data preparation, analytical techniques, and interactive Power BI reporting, the project transforms raw HR data into meaningful business insights that support data-driven HR decisions.
+The objective is to help HR teams and business leaders understand compensation patterns, identify potential pay equity concerns, monitor salary structures, and make more informed workforce compensation decisions.
 
-### 🎯 Project Goals
+## 2. Business Objectives
 
-- Understand employee workforce composition.
-- Analyze compensation across departments, job levels, and locations.
-- Evaluate gender-based compensation differences.
-- Assess employee salaries against defined salary bands.
-- Investigate compensation differences across performance ratings.
-- Analyze employee promotions and salary growth.
-- Identify departments with potential compensation risks.
-- Build interactive dashboards for HR decision-making.
+- Analyze workforce composition across departments, job levels, locations, and gender.
+- Evaluate base salary, annual bonuses, and total compensation.
+- Examine gender-based salary differences across comparable employee groups.
+- Identify salary band positioning and potential compensation risks.
+- Analyze the relationship between employee performance and compensation.
+- Evaluate promotion patterns and salary increases.
+- Track workforce and compensation trends over time.
+- Translate analytical findings into actionable HR recommendations.
 
-## 📊 2. Dataset Overview
+## 3. Technology Stack
 
-The documented project dataset contains:
-
-| Dataset | Records | Purpose |
-|---|---:|---|
-| Employees | 10,000 | Employee and workforce information |
-| Compensation | 30,000 | Salary, bonus, and compensation records |
-| Salary Bands | Source reference table | Defined compensation ranges |
-| Performance | Employee-level performance information | Performance analysis |
-| Promotions | Promotion and salary increase information | Career growth analysis |
-
-
-### Key Data Attributes
-
-| Data Area | Example Attributes |
+| Technology | Purpose |
 |---|---|
-| Employee Information | Employee_ID, Gender, Department, Location |
-| Compensation | Base_Salary, Annual_Bonus, Total_Compensation |
-| Salary Bands | Band_Min, Band_Mid, Band_Max |
-| Job Information | Job_ID, Job_Level |
-| Performance | Performance Rating |
-| Promotions | Promotion_Date, Salary_Increase_Pct |
+| Python | Data cleaning, EDA, statistical analysis, and pay equity analysis |
+| Pandas & NumPy | Data manipulation and numerical calculations |
+| Matplotlib & Seaborn | Exploratory data visualization |
+| SciPy | Statistical hypothesis testing |
+| Scikit-learn / Statsmodels | Regression and analytical modeling, where applicable |
+| MySQL | Relational database storage and data management |
+| SQL | Data validation, joins, aggregations, and business analysis |
+| Microsoft Power BI | Interactive dashboards and business intelligence |
+| Jupyter Notebook | Python analysis environment |
+| GitHub | Project documentation and version control |
 
-## 🔗 3. Data Connection & Relationship Model
+## 4. Dataset Overview
 
-The project uses employee identifiers and job-related attributes to bring workforce, compensation, performance, promotion, and salary-band information together for analysis.
+The project uses seven CSV files covering employee information, compensation, performance, promotions, job structures, and salary benchmarks.
 
-### Data Integration Approach
-
-```text
-                EMPLOYEE DATA
-                     |
-                     |
-              Employee_ID
-                     |
-       +-------------+-------------+
-       |             |             |
-       ▼             ▼             ▼
- COMPENSATION    PERFORMANCE    PROMOTIONS
-       |
-       |
-     Job_ID
-       |
-       ▼
-  SALARY BANDS
-```
-
-### Relationship Logic
-
-| Tables | Matching Attribute | Analytical Purpose |
-|---|---|---|
-| Employees → Compensation | Employee_ID | Connect employees with their compensation records |
-| Employees → Performance | Employee_ID | Analyze employee performance |
-| Employees → Promotions | Employee_ID | Analyze promotion history and salary growth |
-| Compensation → Salary Bands | Job_ID and applicable band attributes | Compare employee compensation with assigned salary ranges |
-
-**Important:** The diagram describes the intended analytical connections. Confirm the exact relationship keys, cardinality, filter direction, and any composite-key logic in your actual Power BI model before treating this as the final physical schema.
-
-### Power BI Data Model
-
-The integrated tables are used to create a relational model for cross-table analysis.
-
-The model supports:
-- Employee-level compensation analysis.
-- Department and location filtering.
-- Performance-based compensation comparisons.
-- Promotion and salary growth analysis.
-- Salary band compliance calculations.
-- Year-based trend analysis.
-
-## 🧹 4. Data Preparation & Cleaning
-
-Python was used for data profiling, cleaning, validation, and preparation using Pandas and NumPy.
-
-### Techniques Applied
-
-**1. Data Profiling**
-- Inspected dataset dimensions and column names.
-- Reviewed data types and unique values.
-- Examined missing-value patterns.
-- Checked key fields and record distributions.
-
-**2. Missing-Value Analysis**
-- Identified missing values in important analytical columns.
-- Evaluated missingness before using fields in calculations.
-- Prepared data for reliable analysis.
-
-**3. Duplicate Detection**
-- Checked duplicate employee and compensation records.
-- Examined duplicate business keys.
-- Applied deduplication where appropriate.
-
-**4. Data Type Validation**
-- Validated numeric salary and bonus fields.
-- Checked date fields used for promotion and trend analysis.
-- Ensured analytical columns were suitable for calculations.
-
-**5. Cross-Table Reconciliation**
-- Checked employee identifiers across related tables.
-- Reviewed matching records between employee and compensation data.
-- Evaluated relationships needed for integrated reporting.
-
-**6. Feature Engineering**
-- Prepared analytical attributes for salary distribution and compensation analysis.
-- Used salary band information to classify compensation status.
-- Prepared performance and promotion attributes for comparison.
-
-## 🧠 5. Analytical Techniques
-
-### A. Descriptive Analytics
-
-Used to summarize the workforce and compensation structure.
-
-Examples:
-- Employee counts and distributions.
-- Average salary and bonus.
-- Department-level compensation.
-- Workforce distribution by gender and job level.
-
-### B. Comparative Analysis
-
-Used to compare compensation across different employee groups.
-
-Examples:
-- Average salary by gender.
-- Average compensation by department.
-- Salary by job level.
-- Compensation by performance rating.
-
-### C. Salary Band Compliance Analysis
-
-Employee compensation was evaluated against applicable salary band limits.
-
-Conceptual classification:
-
-```text
-IF Compensation < Band Minimum
-    → Below Band
-
-IF Compensation >= Band Minimum
-   AND Compensation <= Band Maximum
-    → Within Band
-
-IF Compensation > Band Maximum
-    → Above Band
-```
-
-This classification helps identify compensation records that require further review.
-
-### D. Gender Pay Gap Analysis
-
-Compared average compensation across gender groups.
-
-A general unadjusted pay-gap calculation is:
-
-```text
-Gender Pay Gap (%) =
-(
-    Average Male Salary - Average Female Salary
-)
-/
-Average Male Salary
-× 100
-```
-
-The interpretation depends on the selected salary measure and employee population. This comparison is descriptive and does not adjust for job level, tenure, experience, or other explanatory factors.
-
-### E. Performance & Compensation Analysis
-
-Compared employee performance ratings with compensation levels to identify patterns across performance categories.
-
-### F. Promotion & Salary Growth Analysis
-
-Examined promotion records, promotion rates, and recorded salary increases to understand career progression.
-
-### G. Trend Analysis
-
-Used time-based comparisons to evaluate changes in compensation and salary band compliance across reporting periods.
-
-## 🗄️ 6. SQL & Business Analysis
-
-SQL can be used to query and validate the integrated HR data and calculate business-level metrics.
-
-Relevant analytical operations include:
-
-| SQL Technique | Application |
+| Dataset | Description |
 |---|---|
-| SELECT and WHERE | Retrieve and filter HR records |
-| JOIN | Combine employee, compensation, and related tables |
-| GROUP BY | Aggregate metrics by department, gender, and job level |
-| CASE | Classify salary band status |
-| COUNT and DISTINCTCOUNT logic | Calculate employee counts |
-| AVG | Calculate average salary and compensation |
-| CTEs | Organize multi-step analytical queries |
-| Window Functions | Support ranking and comparative analysis |
-| Conditional Aggregation | Calculate group-specific KPIs |
+| `employees.csv` | Employee demographics, department, location, job level, and experience |
+| `compensation.csv` | Employee salary, bonus, and compensation records |
+| `performance.csv` | Employee performance ratings and review information |
+| `promotions.csv` | Employee promotion history and salary increases |
+| `jobs.csv` | Job titles, job levels, and job-related information |
+| `salary_bands.csv` | Salary ranges and compensation benchmarks |
+| `data_dictionary.csv` | Dataset and column definitions |
 
+**Analytical scope:** The project includes employee-level analysis for the 2026 compensation snapshot, along with historical compensation and promotion analysis where applicable.
 
-## 📐 7. Power BI & DAX Implementation
+## 5. Python Analysis
 
-Power BI was used to develop a four-page interactive HR analytics dashboard.
+Python was used to perform the initial data preparation, quality checks, exploratory analysis, and detailed pay equity investigation.
 
-### Dashboard Development Techniques
+Five Jupyter notebooks were completed.
 
-- Data modeling and table relationships.
-- Power Query data transformation.
-- DAX measures for KPI calculations.
-- Interactive slicers and cross-filtering.
-- KPI cards and conditional formatting.
-- Donut charts, bar charts, and line charts.
-- Department, gender, location, and job-level comparisons.
-- Consistent visual design across dashboard pages.
+### Notebook 01 — Data Understanding
 
-### Example DAX Measures
+**Objective:** Understand the structure and contents of the available HR datasets.
 
-**Total Employees**
+Activities performed:
+- Loaded all seven CSV files.
+- Examined dataset dimensions and column names.
+- Reviewed data types and statistical summaries.
+- Identified primary and foreign key candidates.
+- Examined relationships between employee, compensation, performance, promotion, job, and salary band datasets.
+- Evaluated the overall suitability of the data for analysis.
 
-```dax
-Total Employees =
-DISTINCTCOUNT(employees[Employee_ID])
+### Notebook 02 — Data Quality Audit
+
+**Objective:** Identify data quality issues before analysis.
+
+Activities performed:
+- Checked missing values.
+- Identified duplicate records.
+- Validated employee identifiers.
+- Examined invalid and inconsistent values.
+- Checked compensation and performance records.
+- Identified pre-hire compensation and performance records.
+- Reviewed salary band ranges and key integrity.
+- Evaluated data consistency across related datasets.
+
+### Notebook 03 — Data Cleaning
+
+**Objective:** Prepare reliable datasets for downstream analysis.
+
+Activities performed:
+- Removed duplicate compensation records.
+- Identified and excluded pre-hire records from relevant employee-year analyses.
+- Reconstructed missing annual bonus values where supported by the available compensation information.
+- Recovered missing performance ratings from the corresponding performance categories where possible.
+- Standardized missing education information.
+- Retained missing experience values with appropriate handling flags.
+- Validated salary band ranges and key uniqueness.
+- Reconciled compensation components and checked cleaned dataset integrity.
+
+### Notebook 04 — Exploratory Data Analysis
+
+**Objective:** Understand workforce and compensation patterns.
+
+Areas examined:
+- Employee demographics and workforce distribution.
+- Department and job-level composition.
+- Salary and bonus distributions.
+- Compensation differences across departments and locations.
+- Performance rating distributions.
+- Promotion patterns.
+- Salary trends and compensation characteristics.
+- Relationships between workforce attributes and compensation.
+
+### Notebook 05 — Pay Equity Analysis
+
+**Objective:** Investigate gender-based compensation differences using multiple analytical approaches.
+
+Activities performed:
+- Calculated the overall gender pay gap.
+- Compared compensation within comparable job and location groups.
+- Examined weighted and unweighted group-level pay differences.
+- Conducted experience-stratified comparisons.
+- Conducted performance-stratified comparisons.
+- Examined combined experience and performance groups.
+- Analyzed salary band positioning by gender.
+- Performed statistical hypothesis testing.
+- Used bootstrap resampling to evaluate uncertainty.
+- Developed adjusted regression models.
+- Compared gender-only, job/location-adjusted, and fully adjusted models.
+- Evaluated regression residuals and model performance.
+- Conducted sensitivity analysis.
+- Reviewed employee exclusions and analysis coverage.
+- Prepared final business findings and recommendations.
+
+### Key Python Analysis Results
+
+The completed Python analysis reported:
+
+| Metric | Result |
+|---|---:|
+| Employees in 2026 analysis | 10,000 |
+| Average base salary | ₹2,047,550.81 |
+| Average total compensation | ₹2,363,933.67 |
+| Total compensation expense | ₹23,639,336,677.50 |
+| Comparable job groups | 281 |
+| Employees covered by comparable groups | 9,628 |
+| Comparable-group weighted pay gap | 1.89% |
+| Experience-stratified weighted gap | 1.95% |
+| Performance-stratified weighted gap | 1.86% |
+| Combined stratification weighted gap | 1.85% |
+| Fully adjusted regression estimate | Approximately -1.94% |
+| Regression R² | 0.9944 |
+
+**Statistical interpretation:** The fully adjusted regression estimated female compensation to be approximately 1.94% lower than male compensation after accounting for the included explanatory variables. This is an observed statistical association, not proof of discrimination or causation.
+
+The analysis also used a bootstrap confidence interval and sensitivity checks to assess the stability of the estimated pay difference.
+
+## 6. MySQL Database and SQL Analysis
+
+MySQL was used as the relational database layer for structured data storage, validation, and business analysis.
+
+**Database name:** `Compensation_Pay_Equity_DB`
+
+### Database Activities
+
+- Created and organized the project database.
+- Loaded the project datasets into relational tables.
+- Examined table structures and column definitions.
+- Validated employee identifiers and record consistency.
+- Checked duplicate records and missing values.
+- Reviewed relationships between employee, compensation, performance, promotion, job, and salary band data.
+- Used joins to combine related HR information.
+- Applied aggregations and conditional logic to answer business questions.
+
+### SQL Analysis Areas
+
+The SQL work covered 12 SQL script files and focused on the following analytical areas:
+
+1. **Data Validation**
+   - Record counts and table checks.
+   - Duplicate identification.
+   - Missing value checks.
+   - Key and relationship validation.
+
+2. **Workforce Analysis**
+   - Employee distribution by department.
+   - Employee distribution by job level.
+   - Gender and location segmentation.
+   - Workforce composition analysis.
+
+3. **Compensation Analysis**
+   - Average base salary.
+   - Annual bonus analysis.
+   - Total compensation calculations.
+   - Department-level compensation comparisons.
+   - Salary distribution analysis.
+
+4. **Gender Pay Equity**
+   - Gender-based salary comparisons.
+   - Department-level pay differences.
+   - Job-level compensation comparisons.
+   - Comparable employee group analysis.
+
+5. **Salary Band Analysis**
+   - Salary band positioning.
+   - Below-band and above-band employee identification.
+   - Salary range compliance analysis.
+
+6. **Performance and Promotion Analysis**
+   - Performance rating distribution.
+   - Promotion counts and rates.
+   - Salary increase analysis.
+   - Performance and compensation comparisons.
+
+7. **Historical and Trend Analysis**
+   - Year-over-year compensation comparisons.
+   - Salary growth analysis.
+   - Historical workforce and compensation trends.
+
+8. **Final Business Insights**
+   - Identified important compensation patterns.
+   - Evaluated potential areas of compensation risk.
+   - Prepared SQL-based business findings.
+
+### SQL Business Value
+
+The SQL phase made it possible to analyze the HR data through structured queries, combine related datasets, validate analytical results, and prepare business-level metrics for reporting.
+
+## 7. Power BI — Interactive Dashboard Development
+
+Microsoft Power BI was used to develop an interactive HR compensation and workforce intelligence report.
+
+**Data connection:** Power BI connected to the MySQL database `Compensation_Pay_Equity_DB`, allowing the dashboard to use the structured database tables rather than relying only on disconnected CSV files.
+
+### Dashboard Design
+
+The completed dashboard contains four analytical pages.
+
+### Page 1 — Executive Workforce Overview
+
+**Purpose:** Provide a high-level view of workforce structure and employee demographics.
+
+Key performance indicators:
+- Total Employees
+- Active Employees
+- Average Base Salary
+- Average Annual Bonus
+- Total Compensation
+
+Visualizations:
+- Employees by Gender
+- Employees by Department
+- Employees by Job Level
+- Head Count Trend
+- Employees by Location
+
+Business questions answered:
+- How large is the workforce?
+- How is the workforce distributed by gender?
+- Which departments have the highest employee counts?
+- Which job levels have the largest workforce?
+- How has employee headcount changed over time?
+- Which locations have the highest employee concentration?
+
+### Page 2 — Compensation & Pay Equity Analytics
+
+**Purpose:** Analyze compensation structures, gender-based salary differences, and salary band positioning.
+
+Key performance indicators:
+- Average Base Salary
+- Average Annual Bonus
+- Total Compensation
+- Gender Pay Gap %
+- Salary Band Compliance %
+
+Visualizations:
+- Average Salary by Gender
+- Salary Distribution
+- Employees by Salary Band
+- Gender Pay Gap by Department
+- Average Salary by Department
+
+Business questions answered:
+- How does average salary differ across gender groups?
+- How is compensation distributed across salary ranges?
+- How many employees fall below, within, or above salary bands?
+- Which departments show larger gender pay differences?
+- Which departments have higher average compensation?
+
+### Page 3 — Performance & Career Growth Analytics
+
+**Purpose:** Understand employee performance, promotion activity, and salary growth.
+
+Key performance indicators:
+- Average Performance Rating
+- High Performance %
+- Total Promotions
+- Promotion Rate
+- Average Salary Growth %
+
+Visualizations:
+- Promotion Rate by Performance Rating
+- Average Salary by Performance Rating
+- Promotion by Department
+- Average Salary Growth Trend
+- Performance Rating Distribution
+
+Business questions answered:
+- How are employee performance ratings distributed?
+- Which performance categories have higher promotion rates?
+- How does average salary vary by performance rating?
+- Which departments have higher promotion activity?
+- How has salary growth changed over time?
+
+### Page 4 — Compensation Risk & Strategic Insights
+
+**Purpose:** Highlight potential compensation risks and areas that require HR attention.
+
+Key performance indicators:
+- Compensation Risk %
+- Below Band Employees
+- Above Band Employees
+- Average Salary Growth
+- Gender Pay Gap
+
+Visualizations:
+- Compensation Risk by Department
+- Average Compensation by Department
+- Salary Band Compliance Trend
+- Employees by Job Level
+- Key Strategic Insights
+
+Business questions answered:
+- Which departments have higher out-of-band rates?
+- How many employees fall below or above their salary bands?
+- How is compensation distributed across departments?
+- How has salary band compliance changed over time?
+- Which workforce segments may need further compensation review?
+
+### Dashboard Interactivity
+
+The report includes common slicers for:
+- Year
+- Job Level Category
+- Department
+
+These filters allow users to explore compensation, workforce, performance, and risk metrics across different employee segments.
+
+The dashboard uses KPI cards, bar charts, donut charts, trend charts, and analytical summaries to communicate the findings clearly.
+
+## 8. Key Dashboard Findings
+
+The following figures are displayed in the submitted Power BI dashboard.
+
+### Workforce Overview
+- Total employees: 10,000.
+- Active employees: 9,467.
+- Average base salary: approximately ₹2.09M.
+- Average annual bonus: approximately ₹250.96K.
+- Bengaluru has the largest displayed location-level employee count, at 2,450.
+
+### Compensation and Pay Equity
+- Displayed gender pay gap: 1.6%.
+- Displayed salary band compliance: 99.87%.
+- The dashboard identifies employees below and above salary bands.
+- Gender-based compensation comparisons are available by department.
+
+### Performance and Career Growth
+- Average performance rating: 3.20.
+- High performance percentage: 63.81%.
+- Total promotions displayed: 2,605.
+- Promotion rate displayed: 26.05%.
+- Average salary growth displayed: 14.57%.
+
+### Compensation Risk
+- Displayed compensation risk: 1.48%.
+- Displayed below-band employees: 148.
+- Displayed above-band employees: 1.
+- Sales and Human Resources are highlighted as departments with comparatively higher out-of-band rates in the dashboard.
+
+These are dashboard-displayed metrics. Their definitions, filters, and calculation periods should be checked against the corresponding SQL queries and Power BI measures before comparing them directly with Python outputs.
+
+## 9. Overall Business Insights
+
+The combined analysis provides several important HR and compensation perspectives:
+
+1. **Workforce Structure:** Employee distribution across departments, locations, and job levels helps HR understand workforce concentration.
+
+2. **Compensation Visibility:** Salary and bonus analysis provides a structured view of employee compensation across organizational segments.
+
+3. **Pay Equity Monitoring:** Comparable-group and adjusted regression analysis offers a more meaningful assessment of gender-based compensation differences than an overall average comparison alone.
+
+4. **Salary Band Management:** Employees outside their salary bands can be identified for further review and compensation planning.
+
+5. **Performance and Rewards:** Performance ratings, promotions, and salary growth can be examined together to understand career progression and compensation patterns.
+
+6. **Strategic HR Decisions:** Department-level and workforce-level findings can help prioritize compensation reviews and improve monitoring practices.
+
+## 10. End-to-End Project Workflow
+
+The project follows this analytical workflow:
+
+```text
+Raw HR CSV Datasets
+        |
+        v
+Python - Data Understanding
+        |
+        v
+Data Quality Audit
+        |
+        v
+Data Cleaning
+        |
+        v
+Exploratory Data Analysis
+        |
+        v
+Pay Equity & Statistical Analysis
+        |
+        v
+MySQL Database
+        |
+        v
+SQL Data Validation & Business Analysis
+        |
+        v
+Power BI - MySQL Data Connection
+        |
+        v
+Interactive Dashboard Development
+        |
+        v
+Business Insights & Recommendations
 ```
 
-**Average Total Compensation**
+## 11. Project Structure
 
-```dax
-Avg Total Compensation =
-AVERAGE(compensation[Total_Compensation])
+```text
+Strategic Compensation & Pay Equity Analytics/
+│
+├── data/
+│   ├── compensation.csv
+│   ├── data_dictionary.csv
+│   ├── employees.csv
+│   ├── jobs.csv
+│   ├── performance.csv
+│   ├── promotions.csv
+│   └── salary_bands.csv
+│
+├── notebooks/
+│   ├── 01_Data_Understanding.ipynb
+│   ├── 02_Data_Quality_Audit.ipynb
+│   ├── 03_Data_Cleaning.ipynb
+│   ├── 04_Exploratory_Data_Analysis.ipynb
+│   └── 05_Pay_Equity_Analysis.ipynb
+│
+├── sql/
+│   └── SQL analysis scripts (12 files)
+│
+├── powerbi/
+│   └── Compensation_Pay_Equity_Analysis.pbix
+│
+├── reports/
+│   └── Strategic Compensation & Pay Equity Analytics.pdf
+│
+└── README.md
 ```
 
-**Below Band Employees**
+## 12. Skills Demonstrated
 
-```dax
-Below Band Employees =
-CALCULATE(
-    DISTINCTCOUNT(compensation[Employee_ID]),
-    compensation[Salary Band Status] = "Below Band"
-)
-```
+**Python**
+- Data cleaning and preprocessing
+- Exploratory data analysis
+- Data transformation
+- Statistical hypothesis testing
+- Bootstrap analysis
+- Regression modeling
+- Sensitivity analysis
+- Data visualization
 
-**Above Band Employees**
+**MySQL and SQL**
+- Database management
+- Data validation
+- Joins and aggregations
+- Subqueries and conditional logic
+- Compensation analysis
+- Window and trend analysis
+- Business query development
 
-```dax
-Above Band Employees =
-CALCULATE(
-    DISTINCTCOUNT(compensation[Employee_ID]),
-    compensation[Salary Band Status] = "Above Band"
-)
-```
+**Power BI**
+- MySQL data connectivity
+- Data modeling and relationships
+- DAX measures and calculated metrics
+- KPI development
+- Interactive report design
+- Slicers and cross-filtering
+- Business intelligence storytelling
 
-**Below Band Employee Percentage**
+**Business and Analytical Skills**
+- HR analytics
+- Compensation analytics
+- Pay equity investigation
+- Salary benchmarking
+- Workforce analysis
+- Performance and promotion analysis
+- Business insight development
 
-```dax
-Below Band Employee % =
-DIVIDE(
-    [Below Band Employees],
-    DISTINCTCOUNT(compensation[Employee_ID]),
-    0
-)
-```
+## 13. Important Analytical Considerations
 
+- A gender pay gap is an observed difference in compensation and does not independently establish discrimination.
+- Comparisons should consider relevant factors such as job level, department, location, experience, and performance.
+- Missing or excluded records can affect analytical coverage and should be monitored.
+- Salary band compliance is a monitoring indicator, not proof that every employee's compensation is equitable.
+- Dashboard metrics should be reconciled with the underlying SQL and Python calculations, particularly where filters, reporting periods, and aggregation levels differ.
 
-## 📊 8. Dashboard Pages
+## 14. Conclusion
 
-### 1️⃣ Executive Workforce Overview
+Strategic Compensation & Pay Equity Analytics demonstrates an end-to-end analytical workflow combining Python, MySQL, SQL, and Power BI.
 
-Provides an overview of the employee population.
+The project begins with raw HR datasets, performs structured data quality checks and cleaning, investigates compensation and pay equity using statistical methods, applies SQL for relational analysis, and presents the findings through interactive Power BI dashboards.
 
-**Visuals and Analysis**
-- Total employees.
-- Active employees.
-- Total compensation.
-- Average salary.
-- Employee distribution by gender.
-- Employee distribution by department.
-- Employee distribution by job level.
-- Headcount trend.
-- Employee distribution by location.
+The final solution provides a consolidated view of workforce composition, compensation structure, pay equity, employee performance, career growth, and compensation risk.
 
-**Business Question:** What does the overall workforce structure look like?
-
-### 2️⃣ Compensation & Pay Equity
-
-Evaluates salary distribution and compensation differences.
-
-**Visuals and Analysis**
-- Average base salary.
-- Average annual bonus.
-- Gender pay gap.
-- Salary band compliance.
-- Average salary by gender.
-- Salary distribution.
-- Employees by salary band.
-- Average salary by department.
-- Gender pay gap by department.
-
-**Business Question:** How is compensation distributed, and where do differences require further investigation?
-
-### 3️⃣ Performance & Career Growth
-
-Examines performance, promotions, and salary progression.
-
-**Visuals and Analysis**
-- Average performance rating.
-- High performer percentage.
-- Total promotions.
-- Promotion rate.
-- Performance rating distribution.
-- Average salary by performance rating.
-- Promotions by department.
-- Salary growth after promotion.
-- Promotion rate by job level.
-
-**Business Question:** How do employee performance and career progression relate to compensation?
-
-### 4️⃣ Compensation Risk & Strategic Insights
-
-Highlights salary band exceptions and potential compensation risks.
-
-**Visuals and Analysis**
-- Below-band employee percentage.
-- Below-band employee count.
-- Above-band employee count.
-- Average salary growth.
-- Gender pay gap.
-- Compensation risk by department.
-- Employees by salary band status.
-- Average compensation by department.
-- Salary band compliance trend.
-- Employees by job level.
-
-**Business Question:** Which departments and employee groups should HR review more closely?
-
-## 📌 9. Key Findings & Business Insights
-
-The following findings are based on the documented analysis and dashboard observations. Confirm them against the final refreshed dataset and measures before publishing.
-
-### Workforce Insights
-
-- The documented employee dataset contains 10,000 employee records.
-- Workforce composition can be explored across gender, department, location, and job level.
-- Department-level and location-level comparisons provide visibility into workforce distribution.
-
-### Compensation Insights
-
-- Salary and bonus distributions can be compared across employee groups.
-- Gender-based average salary differences were identified as an area for pay-equity investigation.
-- Salary band compliance analysis helps distinguish employees within, below, and above their defined ranges.
-
-### Salary Band Findings
-
-The documented analysis identified:
-
-- **338 below-band compensation records**
-- **1.13% of the 30,000 compensation records**
-
-This is a record-level result, not necessarily a count of unique employees. It should not be directly compared with a distinct employee-level dashboard measure without reconciling the calculation.
-
-### Performance & Career Growth Insights
-
-- Compensation can be compared across performance-rating categories.
-- Promotion records provide a basis for evaluating career progression.
-- Salary growth analysis helps examine compensation changes associated with promotions.
-
-### Department-Level Risk Insights
-
-- Department-level compensation risk measures help identify areas with higher proportions of out-of-band employees.
-- These departments can be prioritized for further HR review.
-- Salary band exceptions should be investigated in the context of job level, location, tenure, and other relevant factors.
-
-## 💼 10. Business Recommendations
-
-Based on the analytical framework, HR teams can:
-
-1. Review employees whose compensation falls outside assigned salary bands.
-2. Investigate gender pay differences after accounting for relevant job-related factors.
-3. Review salary structures across departments and job levels.
-4. Evaluate promotion and salary growth patterns.
-5. Monitor compensation compliance periodically.
-6. Establish consistent compensation review procedures.
-7. Use interactive reporting to support workforce planning.
-
-**Interpretation Note:** A gender pay gap or salary band exception is a signal for further investigation, not proof of discrimination or unfair treatment.
-
-## 🚀 13. Project Skills Demonstrated
-
-- HR and compensation analytics.
-- Data profiling and quality assessment.
-- Missing-value and duplicate analysis.
-- Data cleaning and feature engineering.
-- Cross-table data reconciliation.
-- Relational data modeling.
-- SQL-based data analysis.
-- Python with Pandas and NumPy.
-- Power Query and DAX.
-- Power BI dashboard development.
-- KPI design and business insight communication.
-
-## 👩‍💻 14. Author
-
-**Nethravathi G**
-
-🔗 **GitHub:** https://github.com/gnethravathi07
-
-🔗 **LinkedIn:** https://www.linkedin.com/in/nethravathi-g-2309772b6/
+It demonstrates how data analytics can support more transparent compensation monitoring, informed HR decisions, and evidence-based workforce planning.
 
 ---
 
-<p align="center">
-  **💜 Turning HR Data into Meaningful Insights 💛**
-  <br/>
-  <i>Data-Driven Decisions | Transparent Compensation | Strategic Workforce Planning</i>
-</p>
+**Project Category:** Human Resources Analytics | Compensation Analytics | Pay Equity | Business Intelligence
+
+**Tools:** Python | MySQL | SQL | Microsoft Power BI
+
+**Project Type:** End-to-End Data Analytics & Business Intelligence Project
